@@ -1,0 +1,33 @@
+{
+  "name": "top-file-uploader",
+  "version": "1.0.0",
+  "description": "A file uploader app where users can CRUD folders and upload and download files",
+  "homepage": "https://github.com/SReddy-96/TOP-file-uploader#readme",
+  "bugs": {
+    "url": "https://github.com/SReddy-96/TOP-file-uploader/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SReddy-96/TOP-file-uploader.git"
+  },
+  "license": "MIT",
+  "author": "SReddy-96",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.9.0",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.16.0",
+    "prisma": "^6.9.0",
+    "serve-favicon": "^2.5.0"
+  }
+}
