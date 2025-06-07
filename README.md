@@ -65,3 +65,30 @@
 ## Application Structure
 
 ## About
+
+## Notes
+
+### install
+
+- @prisma/client
+- @quixo3/prisma-session-store
+- bcryptjs
+- dotenv"
+- ejs
+- express
+- express-session
+- express-validator
+- multer
+- passport
+- passport-local
+- pg
+- prisma
+- serve-favicon
+
+### schemas
+
+- sessions
+- files (ONE-TO-MANY  with user)
+- folders (one-to-many with user)
+- users ()
+      - If user deleted then delete all files and folders.
