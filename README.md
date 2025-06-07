@@ -88,7 +88,7 @@
 ### schemas
 
 - sessions
-- files (ONE-TO-MANY  with user)
-- folders (one-to-many with user)
-- users ()
+- files (ONE-TO-MANY  with user) user, file_url, id
+- folders (one-to-many with user) (one-to-many with files) user, id
+- users (id, name, email, username, password, folders[], files[])
       - If user deleted then delete all files and folders.

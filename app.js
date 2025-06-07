@@ -4,9 +4,7 @@ const path = require("node:path");
 const express = require("express");
 const expressSession = require("express-session");
 const passport = require("passport");
-const db = require("./db/pool");
 const bcrypt = require("bcryptjs");
-const pgSession = require("connect-pg-simple")(expressSession);
 const favicon = require("serve-favicon");
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('@prisma/client');
@@ -15,7 +13,7 @@ const { PrismaClient } = require('@prisma/client');
 const app = express();
 
 // Serve Favicon
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+// app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 // static assets
 const assetsPath = path.join(__dirname, "public");

@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -16,6 +17,45 @@ datasource db {
 model Session {
   id        String   @id
   sid       String   @unique
-  data      String   
-  expiresAt   DateTime
+  data      String
+  expiresAt DateTime
+}
+
+model Users {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique @db.VarChar(100)
+  username String    @db.VarChar(100)
+  password String
+  created  DateTime  @default(now())
+  role     Role      @default(USER)
+  folders  Folders[]
+  files    Files[]
+}
+
+model Folders {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(100)
+  createdAt DateTime  @default(now())
+  user      Users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  files     Files[]
+  parent    Folders?  @relation("FolderToFolder", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId  Int?
+  children  Folders[] @relation("FolderToFolder")
+}
+
+model Files {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(100)
+  url       String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+  user      Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  folder    Folders? @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  folderId  Int?
+}
+
+enum Role {
+  USER
+  ADMIN
 }
