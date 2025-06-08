@@ -1,0 +1,24 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <h2>Register</h2>
+
+  <div class="form-error"><%- include('partials/form-error') %></div>
+
+  <form class="forms" action="/register" method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" required />
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required />
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required />
+    <label for="confirm_password">Confirm Password</label>
+    <input
+      type="password"
+      name="confirm_password"
+      id="confirm_password"
+      required
+    />
+    <button class="button-primary" type="submit">Sign Up</button>
+  </form>
+</main>
+<%- include('partials/footer') %>

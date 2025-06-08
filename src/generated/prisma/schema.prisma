@@ -24,9 +24,10 @@ model Session {
 model Users {
   id       Int       @id @default(autoincrement())
   email    String    @unique @db.VarChar(100)
-  username String    @db.VarChar(100)
+  username String    @unique @db.VarChar(100)
   password String
   created  DateTime  @default(now())
+  updated  DateTime  @updatedAt
   role     Role      @default(USER)
   folders  Folders[]
   files    Files[]

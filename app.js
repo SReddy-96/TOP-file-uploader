@@ -6,14 +6,18 @@ const expressSession = require("express-session");
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const favicon = require("serve-favicon");
-const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
-const { PrismaClient } = require('@prisma/client');
-
+const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
+const { PrismaClient } = require("@prisma/client");
+const loginRouter = require("./routes/loginRouter");
+const registerRouter = require("./routes/registerRouter");
+const indexRouter = require("./routes/indexRouter");
+const fileRouter = require("./routes/fileRouter");
+const folderRouter = require("./routes/folderRouter");
 
 const app = express();
 
 // Serve Favicon
-// app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 // static assets
 const assetsPath = path.join(__dirname, "public");
@@ -29,19 +33,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   expressSession({
     cookie: {
-     maxAge: 7 * 24 * 60 * 60 * 1000 // ms
+      maxAge: 7 * 24 * 60 * 60 * 1000, // ms
     },
-    secret: 'a santa at nasa',
+    secret: "a santa at nasa",
     resave: true,
     saveUninitialized: true,
-    store: new PrismaSessionStore(
-      new PrismaClient(),
-      {
-        checkPeriod: 2 * 60 * 1000,  //ms
-        dbRecordIdIsSessionId: true,
-        dbRecordIdFunction: undefined,
-      }
-    )
+    store: new PrismaSessionStore(new PrismaClient(), {
+      checkPeriod: 2 * 60 * 1000, //ms
+      dbRecordIdIsSessionId: true,
+      dbRecordIdFunction: undefined,
+    }),
   })
 );
 
@@ -58,7 +59,11 @@ app.use((req, res, next) => {
 });
 
 // Routes
-
+app.use("/", loginRouter);
+app.use("/register", registerRouter);
+app.use("/home", indexRouter);
+app.use("/file", fileRouter);
+app.use("/folder", folderRouter);
 
 // logout route
 app.get("/log-out", (req, res, next) => {

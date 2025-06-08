@@ -2246,6 +2246,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     created: Date | null
+    updated: Date | null
     role: $Enums.Role | null
   }
 
@@ -2255,6 +2256,7 @@ export namespace Prisma {
     username: string | null
     password: string | null
     created: Date | null
+    updated: Date | null
     role: $Enums.Role | null
   }
 
@@ -2264,6 +2266,7 @@ export namespace Prisma {
     username: number
     password: number
     created: number
+    updated: number
     role: number
     _all: number
   }
@@ -2283,6 +2286,7 @@ export namespace Prisma {
     username?: true
     password?: true
     created?: true
+    updated?: true
     role?: true
   }
 
@@ -2292,6 +2296,7 @@ export namespace Prisma {
     username?: true
     password?: true
     created?: true
+    updated?: true
     role?: true
   }
 
@@ -2301,6 +2306,7 @@ export namespace Prisma {
     username?: true
     password?: true
     created?: true
+    updated?: true
     role?: true
     _all?: true
   }
@@ -2397,6 +2403,7 @@ export namespace Prisma {
     username: string
     password: string
     created: Date
+    updated: Date
     role: $Enums.Role
     _count: UsersCountAggregateOutputType | null
     _avg: UsersAvgAggregateOutputType | null
@@ -2425,6 +2432,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     created?: boolean
+    updated?: boolean
     role?: boolean
     folders?: boolean | Users$foldersArgs<ExtArgs>
     files?: boolean | Users$filesArgs<ExtArgs>
@@ -2437,6 +2445,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     created?: boolean
+    updated?: boolean
     role?: boolean
   }, ExtArgs["result"]["users"]>
 
@@ -2446,6 +2455,7 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     created?: boolean
+    updated?: boolean
     role?: boolean
   }, ExtArgs["result"]["users"]>
 
@@ -2455,10 +2465,11 @@ export namespace Prisma {
     username?: boolean
     password?: boolean
     created?: boolean
+    updated?: boolean
     role?: boolean
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "password" | "created" | "role", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "password" | "created" | "updated" | "role", ExtArgs["result"]["users"]>
   export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     folders?: boolean | Users$foldersArgs<ExtArgs>
     files?: boolean | Users$filesArgs<ExtArgs>
@@ -2479,6 +2490,7 @@ export namespace Prisma {
       username: string
       password: string
       created: Date
+      updated: Date
       role: $Enums.Role
     }, ExtArgs["result"]["users"]>
     composites: {}
@@ -2910,6 +2922,7 @@ export namespace Prisma {
     readonly username: FieldRef<"Users", 'String'>
     readonly password: FieldRef<"Users", 'String'>
     readonly created: FieldRef<"Users", 'DateTime'>
+    readonly updated: FieldRef<"Users", 'DateTime'>
     readonly role: FieldRef<"Users", 'Role'>
   }
     
@@ -5720,6 +5733,7 @@ export namespace Prisma {
     username: 'username',
     password: 'password',
     created: 'created',
+    updated: 'updated',
     role: 'role'
   };
 
@@ -5907,6 +5921,7 @@ export namespace Prisma {
     username?: StringFilter<"Users"> | string
     password?: StringFilter<"Users"> | string
     created?: DateTimeFilter<"Users"> | Date | string
+    updated?: DateTimeFilter<"Users"> | Date | string
     role?: EnumRoleFilter<"Users"> | $Enums.Role
     folders?: FoldersListRelationFilter
     files?: FilesListRelationFilter
@@ -5918,6 +5933,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     created?: SortOrder
+    updated?: SortOrder
     role?: SortOrder
     folders?: FoldersOrderByRelationAggregateInput
     files?: FilesOrderByRelationAggregateInput
@@ -5926,16 +5942,17 @@ export namespace Prisma {
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     email?: string
+    username?: string
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
     NOT?: UsersWhereInput | UsersWhereInput[]
-    username?: StringFilter<"Users"> | string
     password?: StringFilter<"Users"> | string
     created?: DateTimeFilter<"Users"> | Date | string
+    updated?: DateTimeFilter<"Users"> | Date | string
     role?: EnumRoleFilter<"Users"> | $Enums.Role
     folders?: FoldersListRelationFilter
     files?: FilesListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "username">
 
   export type UsersOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5943,6 +5960,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     created?: SortOrder
+    updated?: SortOrder
     role?: SortOrder
     _count?: UsersCountOrderByAggregateInput
     _avg?: UsersAvgOrderByAggregateInput
@@ -5960,6 +5978,7 @@ export namespace Prisma {
     username?: StringWithAggregatesFilter<"Users"> | string
     password?: StringWithAggregatesFilter<"Users"> | string
     created?: DateTimeWithAggregatesFilter<"Users"> | Date | string
+    updated?: DateTimeWithAggregatesFilter<"Users"> | Date | string
     role?: EnumRoleWithAggregatesFilter<"Users"> | $Enums.Role
   }
 
@@ -6148,6 +6167,7 @@ export namespace Prisma {
     username: string
     password: string
     created?: Date | string
+    updated?: Date | string
     role?: $Enums.Role
     folders?: FoldersCreateNestedManyWithoutUserInput
     files?: FilesCreateNestedManyWithoutUserInput
@@ -6159,6 +6179,7 @@ export namespace Prisma {
     username: string
     password: string
     created?: Date | string
+    updated?: Date | string
     role?: $Enums.Role
     folders?: FoldersUncheckedCreateNestedManyWithoutUserInput
     files?: FilesUncheckedCreateNestedManyWithoutUserInput
@@ -6169,6 +6190,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     folders?: FoldersUpdateManyWithoutUserNestedInput
     files?: FilesUpdateManyWithoutUserNestedInput
@@ -6180,6 +6202,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     folders?: FoldersUncheckedUpdateManyWithoutUserNestedInput
     files?: FilesUncheckedUpdateManyWithoutUserNestedInput
@@ -6191,6 +6214,7 @@ export namespace Prisma {
     username: string
     password: string
     created?: Date | string
+    updated?: Date | string
     role?: $Enums.Role
   }
 
@@ -6199,6 +6223,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
@@ -6208,6 +6233,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
   }
 
@@ -6451,6 +6477,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     created?: SortOrder
+    updated?: SortOrder
     role?: SortOrder
   }
 
@@ -6464,6 +6491,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     created?: SortOrder
+    updated?: SortOrder
     role?: SortOrder
   }
 
@@ -6473,6 +6501,7 @@ export namespace Prisma {
     username?: SortOrder
     password?: SortOrder
     created?: SortOrder
+    updated?: SortOrder
     role?: SortOrder
   }
 
@@ -7140,6 +7169,7 @@ export namespace Prisma {
     username: string
     password: string
     created?: Date | string
+    updated?: Date | string
     role?: $Enums.Role
     files?: FilesCreateNestedManyWithoutUserInput
   }
@@ -7150,6 +7180,7 @@ export namespace Prisma {
     username: string
     password: string
     created?: Date | string
+    updated?: Date | string
     role?: $Enums.Role
     files?: FilesUncheckedCreateNestedManyWithoutUserInput
   }
@@ -7249,6 +7280,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     files?: FilesUpdateManyWithoutUserNestedInput
   }
@@ -7259,6 +7291,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     files?: FilesUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -7328,6 +7361,7 @@ export namespace Prisma {
     username: string
     password: string
     created?: Date | string
+    updated?: Date | string
     role?: $Enums.Role
     folders?: FoldersCreateNestedManyWithoutUserInput
   }
@@ -7338,6 +7372,7 @@ export namespace Prisma {
     username: string
     password: string
     created?: Date | string
+    updated?: Date | string
     role?: $Enums.Role
     folders?: FoldersUncheckedCreateNestedManyWithoutUserInput
   }
@@ -7385,6 +7420,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     folders?: FoldersUpdateManyWithoutUserNestedInput
   }
@@ -7395,6 +7431,7 @@ export namespace Prisma {
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     created?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated?: DateTimeFieldUpdateOperationsInput | Date | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     folders?: FoldersUncheckedUpdateManyWithoutUserNestedInput
   }

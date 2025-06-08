@@ -92,3 +92,22 @@
 - folders (one-to-many with user) (one-to-many with files) user, id
 - users (id, name, email, username, password, folders[], files[])
       - If user deleted then delete all files and folders.
+
+### Layout
+
+User should be able to login or sign up from the initial load.
+Shouldn't need a landing page Used more like an app.
+login and sign up have no header and footer. Just fill the entire page.
+Similar to google drive but using a side panel style.
+Some sort of index page with all the files and folders.
+Side panel has add folder and add file and home page and maybe a settings / profile page
+Title of the page shows which folder your in.
+side panel and footer.
+Able to add new folders and open the folders and then add folders or files to these folders.
+
+- register (CRUD)
+      - Should have a view profile where they can change user data and delete themselves.
+- log in (probably the '/' route) (get, post)
+- home (get)
+- file (CRUD) Should be able to download the file.
+- folder (CRUD)
