@@ -30,7 +30,6 @@ const postFile = [
   upload.single("file"),
   validateFile,
   async (req, res, next) => {
-
     // check for folder if none then null
     let { folder } = req.body || null;
     if (folder) {
@@ -46,14 +45,31 @@ const postFile = [
     try {
       const newFile = await db.addFile(req.file, folder, req.user.id);
     } catch (error) {
-      console.error(error);
+      error.statusCode = error.statusCode || 500;
       next(error);
     }
     res.redirect("/home");
   },
 ];
 
+const readFile = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      const err = new Error("No file Id");
+      err.statusCode = 401;
+      return next(err);
+    }
+    const file = await db.getFileById(parseInt(id));
+    res.render("file", { title: file.name, file: file });
+  } catch (error) {
+    error.statusCode = error.statusCode || 500;
+    next(error);
+  }
+};
+
 module.exports = {
   getFile,
   postFile,
+  readFile,
 };

@@ -47,6 +47,15 @@ const getAllFoldersByUser = async (userId) => {
   return result;
 };
 
+const getAllFilesByUser = async (userId) => {
+  const results = await prisma.files.findMany({
+    where: {
+      userId: userId,
+    },
+  });
+  return results;
+};
+
 const addFile = async (file, folderId, userId) => {
   const result = await prisma.files.create({
     data: {
@@ -70,12 +79,38 @@ const addFolder = async (name, folderId, userId) => {
   return result;
 };
 
+const getFileById = async (id) => {
+  const result = await prisma.files.findFirst({
+    where: {
+      id: id,
+    },
+  });
+  return result;
+};
+
+const getFolderById = async (id) => {
+  const result = await prisma.folders.findFirst({
+    where: {
+      id: id,
+    },
+    include: {
+      children: true,
+      files: true,
+      parent:true,
+    },
+  });
+  return result;
+};
+
 module.exports = {
   getUserByUsername,
   getUserByEmail,
   getUserById,
   insertUser,
   getAllFoldersByUser,
+  getAllFilesByUser,
   addFile,
-  addFolder
+  addFolder,
+  getFileById,
+  getFolderById,
 };

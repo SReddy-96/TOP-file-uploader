@@ -29,7 +29,7 @@ const validateUser = [
     .withMessage("Username must be between 3 and 20 characters.")
     .matches(/^[a-zA-Z0-9_.-]+$/) // Recommended: Allow letters, numbers, underscore, dot, hyphen
     .withMessage(
-      "Username can only contain letters, numbers, underscores, dots, and hyphens."
+      "Username can only contain letters, numbers, underscores, dots, and hyphens.",
     )
     .custom(async (value) => {
       const user = await db.getUserByUsername(value);
@@ -45,10 +45,10 @@ const validateUser = [
     .isLength({ min: 8 })
     .withMessage("Password must be over 8 characters")
     .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/,
     )
     .withMessage(
-      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
     ),
   body("confirm_password")
     .trim()
@@ -89,7 +89,7 @@ const postRegister = [
         res.redirect("/home");
       });
     } catch (error) {
-      console.error(error);
+      error.statusCode = error.statusCode || 500;
       next(error);
     }
   },

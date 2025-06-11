@@ -31,14 +31,31 @@ const postFolder = [
     try {
       const newFolder = await db.addFolder(name, folder, req.user.id);
     } catch (error) {
-      console.error(error);
-      next(error);
+    error.statusCode = error.statusCode || 500; 
+    next(error);
     }
     res.redirect("/home");
   },
 ];
 
+const readFolder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      const err = new Error("No Folder Id");
+      err.statusCode = 401;
+      return next(err);
+    }
+    const folder = await db.getFolderById(parseInt(id));
+    res.render("folder", { title: folder.name, folder: folder });
+  } catch (error) {
+    error.statusCode = error.statusCode || 500;
+    next(error);
+  }
+};
+
 module.exports = {
   getFolder,
   postFolder,
+  readFolder
 };

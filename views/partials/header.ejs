@@ -14,8 +14,14 @@
         <a href="/" class="header-title">file Uploader</a>
       </h1>
       <ul>
+        <% if (user) { %>
         <li><a href="/file/add">+ Add File</a></li>
         <li><a href="/folder/add">+ Add Folder</a></li>
+        <li><a href="/log-out">Log-out</a></li>
+        <% }else{ %>
+        <li><a href="/">Log In</a></li>
+        <li><a href="/register">Register</a></li>
+        <% } %>
       </ul>
     </header>
 

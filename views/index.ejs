@@ -1,15 +1,22 @@
 <%- include('partials/header', {title:title}) %>
-<main>
-    <h2>Home page</h2>
 
-    <section>
-      <h2>Folders:</h2>
-      <ul>
-        <% locals.folders.forEach(folder => { %>
-         <li><a href="/folder/<%= folder.id %>"><%= folder.name %></a></li>
-        <% }) %>
-      </ul>
-    </section>  
-    <a href="/log-out">Log-out</a>
+<main>
+  <h2>Home page</h2>
+
+  <section>
+    <h3>Folders:</h3>
+    <ul>
+      <% locals.folders.forEach(folder => { %>
+      <li><a href="/folder/<%= folder.id %>"><%= folder.name %></a></li>
+      <% }) %>
+    </ul>
+    <h3>All Files:</h3>
+    <ul>
+      <% files.forEach(file => { %>
+      <li><a href="/file/<%= file.id %>"><%= file.name %></a></li>
+      <% }) %>
+    </ul>
+  </section>
 </main>
+
 <%- include('partials/footer') %>

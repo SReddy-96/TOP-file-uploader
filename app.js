@@ -90,10 +90,10 @@ app.use((req, res, next) => {
 
 // Error-handling middleware
 app.use((err, req, res, next) => {
-  console.error(err);
+  console.log(err);
   res.status(err.statusCode || 500).render("error", {
     title: "Error",
-    err,
+    err: err,
   });
 });
 

@@ -4,12 +4,12 @@
 
   <form action="/file/add" method="post" enctype="multipart/form-data">
     <label for="file">File</label>
-    <input type="file" id="file" name="file" required/>
-    <label for="AddFolder">Folder</label>
+    <input type="file" id="file" name="file" required />
+    <label for="folder">Folder</label>
     <select name="folder" id="folder">
       <option value="">None</option>
       <% locals.folders.forEach(folder => { %>
-       <option value="<%= folder.id %>"><%= folder.name %></option>
+      <option value="<%= folder.id %>"><%= folder.name %></option>
       <% }) %>
     </select>
     <button type="submit">Add File</button>

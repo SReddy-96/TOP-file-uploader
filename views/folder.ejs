@@ -1,0 +1,37 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <%= console.log(folder) %>
+  <h2><%= folder.name %></h2>
+  <% if (!folder.parent) { %>
+  <p>Parent: No Parent</p>
+  <% } else { %>
+  <p>
+    Parent:
+    <a href="/folder/<%= folder.parent.id %>"><%= folder.parent.name %> </a>
+  </p>
+  <% } %>
+  <p>Created: <%= folder.createdAt.toDateString() %></p>
+  <h3>Children Folders:</h3>
+  <ul>
+    <% if (folder.children.length===0) { %>
+    <li>No Children Folders</li>
+    <% } else { %>
+    <% folder.children.forEach(child => { %>
+    <li><a href="/folder/<%= child.id %>"><%= child.name %></a></li>
+    <% }) %>
+    <% } %>
+  </ul>
+  <h3>Files:</h3>
+  <ul>
+    <% if (folder.files.length===0) { %>
+    <li>No Files</li>
+    <% } else { %>
+    <% folder.files.forEach(file => { %>
+    <li><a href="/file/<%= file.id %>"><%= file.name %></a></li>
+    <% }) %>
+    <% } %>
+  </ul>
+
+  <a href="/home">Back</a>
+</main>
+<%- include('partials/footer') %>

@@ -1,0 +1,10 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <h2><%= file.name %></h2>
+  <p>url: <%= file.url %></p>
+  <p>Folder: <%= file.folder ? file.folder : "None" %></p>
+  <p>Created: <%= file.createdAt.toDateString() %></p>
+
+  <a href="/home">Back</a>
+</main>
+<%- include('partials/footer') %>
