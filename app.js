@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const favicon = require("serve-favicon");
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 const { PrismaClient } = require("@prisma/client");
+const authenticateUser = require("./middleware/authenticate");
 const loginRouter = require("./routes/loginRouter");
 const registerRouter = require("./routes/registerRouter");
 const indexRouter = require("./routes/indexRouter");
@@ -61,6 +62,10 @@ app.use((req, res, next) => {
 // Routes
 app.use("/", loginRouter);
 app.use("/register", registerRouter);
+
+// middleware to protect the below pages 
+app.use(authenticateUser);
+
 app.use("/home", indexRouter);
 app.use("/file", fileRouter);
 app.use("/folder", folderRouter);
