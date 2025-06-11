@@ -3,7 +3,12 @@
     <h2>Home page</h2>
 
     <section>
-
+      <h2>Folders:</h2>
+      <ul>
+        <% locals.folders.forEach(folder => { %>
+         <li><a href="/folder/<%= folder.id %>"><%= folder.name %></a></li>
+        <% }) %>
+      </ul>
     </section>  
     <a href="/log-out">Log-out</a>
 </main>

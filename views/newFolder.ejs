@@ -1,0 +1,18 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <div class="form-error"><%- include('partials/form-error') %></div>
+
+  <form action="/folder/add" method="post">
+    <label for="name">Name</label>
+    <input type="name" id="name" name="name" required/>
+    <label for="folder">Folders</label>
+    <select name="folder" id="folder">
+      <option value="">None</option>
+      <% locals.folders.forEach(folder => { %>
+       <option value="<%= folder.id %>"><%= folder.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Add File</button>
+  </form>
+</main>
+<%- include('partials/footer') %>
