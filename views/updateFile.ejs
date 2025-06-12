@@ -1,0 +1,22 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <div class="form-error"><%- include('partials/form-error') %></div>
+
+  <form action="/file/update/<%= file.id %>" method="post" enctype="multipart/form-data">
+    <label for="name">Name</label>
+    <input type="name" id="name" name="name" value="<%= file.name %>" required />
+    <label for="folder">Folder</label>
+    <select name="folder" id="folder">
+      <option value="">None</option>
+  <% locals.folders.forEach(folder => { %>
+    <option value="<%= folder.id %>" 
+        <%= file.folder && file.folder.id === folder.id ? "selected" : "" %>
+        >
+        <%= folder.name %>
+    </option>
+  <% }) %>
+    </select>
+    <button type="submit">Update File</button>
+  </form>
+</main>
+<%- include('partials/footer') %>

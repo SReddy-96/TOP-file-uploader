@@ -141,6 +141,7 @@ exports.Prisma.FoldersScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   userId: 'userId',
   parentId: 'parentId'
 };
@@ -150,6 +151,7 @@ exports.Prisma.FilesScalarFieldEnum = {
   name: 'name',
   url: 'url',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   userId: 'userId',
   folderId: 'folderId'
 };

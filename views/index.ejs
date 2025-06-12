@@ -6,12 +6,18 @@
   <section>
     <h3>Folders:</h3>
     <ul>
+      <% if (locals.folders.length===0) { %>
+      <li>No Folders</li>
+      <% } %>
       <% locals.folders.forEach(folder => { %>
       <li><a href="/folder/<%= folder.id %>"><%= folder.name %></a></li>
       <% }) %>
     </ul>
     <h3>All Files:</h3>
     <ul>
+      <% if (files.length===0) { %>
+      <li>No Files</li>
+      <% } %>
       <% files.forEach(file => { %>
       <li><a href="/file/<%= file.id %>"><%= file.name %></a></li>
       <% }) %>

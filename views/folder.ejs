@@ -1,6 +1,5 @@
 <%- include('partials/header', {title:title}) %>
 <main>
-  <%= console.log(folder) %>
   <h2><%= folder.name %></h2>
   <% if (!folder.parent) { %>
   <p>Parent: No Parent</p>
@@ -31,7 +30,7 @@
     <% }) %>
     <% } %>
   </ul>
-
+  <a href="/folder/update/<%= folder.id %>">Update</a>
   <a href="/home">Back</a>
 </main>
 <%- include('partials/footer') %>

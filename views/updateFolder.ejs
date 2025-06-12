@@ -1,0 +1,18 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <div class="form-error"><%- include('partials/form-error') %></div>
+
+  <form action="/folder/update/<%= folder.id %>" method="post">
+    <label for="name">Name</label>
+    <input type="name" id="name" name="name" value="<%= folder.name %>" required/>
+    <label for="parentFolder">Parent Folders</label>
+    <select name="parentFolder" id="parentFolder">
+      <option value="">None</option>
+      <% parentOptions.forEach(f=> { %>
+       <option value="<%= f.id %>"  <%= folder.parent && folder.parent.id === f.id ? "selected" : "" %>><%= f.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Update Folder</button>
+  </form>
+</main>
+<%- include('partials/footer') %>

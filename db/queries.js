@@ -84,6 +84,9 @@ const getFileById = async (id) => {
     where: {
       id: id,
     },
+    include: {
+      folder: true,
+    },
   });
   return result;
 };
@@ -96,7 +99,32 @@ const getFolderById = async (id) => {
     include: {
       children: true,
       files: true,
-      parent:true,
+      parent: true,
+    },
+  });
+  return result;
+};
+
+const updateFile = async (id, name, folderId, userId) => {
+  const result = await prisma.files.update({
+    where: {
+      id: id,
+      userId: userId,
+    },
+    data: {
+      name: name,
+      folderId: folderId || null,
+    },
+  });
+  return result;
+};
+
+const updateFolder = async (id, name, parentFolderId, userId) => {
+  const result = await prisma.folders.update({
+    where: { id, userId },
+    data: {
+      name: name,
+      parentId: parentFolderId,
     },
   });
   return result;
@@ -113,4 +141,6 @@ module.exports = {
   addFolder,
   getFileById,
   getFolderById,
+  updateFile,
+  updateFolder,
 };

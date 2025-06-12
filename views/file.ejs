@@ -1,10 +1,19 @@
 <%- include('partials/header', {title:title}) %>
 <main>
   <h2><%= file.name %></h2>
+  <!-- turn url into download button -->
   <p>url: <%= file.url %></p>
-  <p>Folder: <%= file.folder ? file.folder : "None" %></p>
+  <% if (file.folder) { %>
+  <p>
+    Folder: <a href="/folder/<%= file.folder.id %>"><%= file.folder.name %></a>
+  </p>
+  <% }else{ %>
+  <p>Folder: None</p>
+  <% } %>
   <p>Created: <%= file.createdAt.toDateString() %></p>
-
+  <div class="actionButtons">
+    <a href="/file/update/<%= file.id %>">Update</a>
+  </div>
   <a href="/home">Back</a>
 </main>
 <%- include('partials/footer') %>

@@ -37,6 +37,7 @@ model Folders {
   id        Int       @id @default(autoincrement())
   name      String    @db.VarChar(100)
   createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   user      Users     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   files     Files[]
@@ -50,6 +51,7 @@ model Files {
   name      String   @db.VarChar(100)
   url       String   @db.VarChar(255)
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   user      Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
   folder    Folders? @relation(fields: [folderId], references: [id], onDelete: Cascade)
