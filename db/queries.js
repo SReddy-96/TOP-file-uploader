@@ -130,6 +130,20 @@ const updateFolder = async (id, name, parentFolderId, userId) => {
   return result;
 };
 
+const deleteFile = async (id, userId) => {
+  const result = await prisma.files.delete({
+    where: { id, userId },
+  });
+  return result;
+};
+
+const deleteFolder = async (id, userId) => {
+  const result = await prisma.folders.delete({
+    where: { id, userId },
+  });
+  return result;
+};
+
 module.exports = {
   getUserByUsername,
   getUserByEmail,
@@ -143,4 +157,6 @@ module.exports = {
   getFolderById,
   updateFile,
   updateFolder,
+  deleteFile,
+  deleteFolder,
 };

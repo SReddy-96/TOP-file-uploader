@@ -1,0 +1,16 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <h2>
+    Are you sure you want to delete
+    <%= name %>?
+  </h2>
+  <% if (fileOrFolder === "folder") { %>
+  <p>All files and folders inside <%= name %> will be permanently deleted?</p>
+  <% } %>
+  <a href="/home">Cancel</a>
+  <form action="/<%= fileOrFolder %>/delete/<%= id %>" method="post">
+    <button type="submit">Delete</button>
+  </form>
+</main>
+
+<%- include('partials/footer') %>

@@ -117,10 +117,49 @@ const postUpdateFolder = [
   },
 ];
 
+const getDeleteFolder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      const err = new Error("No Folder Id");
+      err.statusCode = 401;
+      return next(err);
+    }
+    const folder = await db.getFolderById(parseInt(id));
+    res.render("delete", {
+      title: `Delete ${folder.name}`,
+      fileOrFolder: "folder",
+      name: folder.name,
+      id: folder.id,
+    });
+  } catch (error) {
+    error.statusCode = error.statusCode || 500;
+    next(error);
+  }
+};
+
+const postDeleteFolder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      const err = new Error("No Folder Id");
+      err.statusCode = 401;
+      return next(err);
+    }
+    const deletedFolder = await db.deleteFolder(parseInt(id), req.user.id);
+    res.redirect("/home");
+  } catch (error) {
+    error.statusCode = error.statusCode || 500;
+    next(error);
+  }
+};
+
 module.exports = {
   getFolder,
   postFolder,
   readFolder,
   getUpdateFolder,
   postUpdateFolder,
+  getDeleteFolder,
+  postDeleteFolder,
 };

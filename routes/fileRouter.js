@@ -5,6 +5,8 @@ const {
   readFile,
   getUpdateFile,
   postUpdateFile,
+  getDeleteFile,
+  postDeleteFile,
 } = require("../controllers/fileController");
 const fetchFolders = require("../middleware/fetchFolders");
 
@@ -17,5 +19,8 @@ fileRouter.get("/:id", readFile);
 
 fileRouter.get("/update/:id", [fetchFolders, getUpdateFile]);
 fileRouter.post("/update/:id", postUpdateFile);
+
+fileRouter.get("/delete/:id", getDeleteFile);
+fileRouter.post("/delete/:id", postDeleteFile);
 
 module.exports = fileRouter;

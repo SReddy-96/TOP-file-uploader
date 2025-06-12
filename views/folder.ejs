@@ -30,7 +30,10 @@
     <% }) %>
     <% } %>
   </ul>
-  <a href="/folder/update/<%= folder.id %>">Update</a>
+  <div class="actionButtons">
+    <a href="/folder/update/<%= folder.id %>">Update</a>
+    <a href="/folder/delete/<%= folder.id %>">Delete</a>
+  </div>
   <a href="/home">Back</a>
 </main>
 <%- include('partials/footer') %>

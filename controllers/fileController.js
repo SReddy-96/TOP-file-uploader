@@ -122,10 +122,49 @@ const postUpdateFile = [
   },
 ];
 
+const getDeleteFile = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      const err = new Error("No file Id");
+      err.statusCode = 401;
+      return next(err);
+    }
+    const file = await db.getFileById(parseInt(id));
+    res.render("delete", {
+      title: `Delete ${file.name}`,
+      fileOrFolder: "file",
+      name: file.name,
+      id: file.id,
+    });
+  } catch (error) {
+    error.statusCode = error.statusCode || 500;
+    next(error);
+  }
+};
+
+const postDeleteFile = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      const err = new Error("No file Id");
+      err.statusCode = 401;
+      return next(err);
+    }
+    const deletedFile = await db.deleteFile(parseInt(id), req.user.id);
+    res.redirect("/home");
+  } catch (error) {
+    error.statusCode = error.statusCode || 500;
+    next(error);
+  }
+};
+
 module.exports = {
   getFile,
   postFile,
   readFile,
   getUpdateFile,
   postUpdateFile,
+  getDeleteFile,
+  postDeleteFile,
 };
