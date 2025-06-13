@@ -1,6 +1,7 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 const getDescendantIds = require("../middleware/getDescendantIds");
+const supabase = require("../db/supabaseClient");
 
 const notEmptyErr = "must not be empty";
 
@@ -161,7 +162,20 @@ const postDeleteFolder = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
-    const deletedFolder = await db.deleteFolder(parseInt(id), req.user.id);
+
+    // gets all files from folder and its children
+    const filePaths = await db.getAllFilePathsInFolderTree(parseInt(id));
+    filePaths.forEach(async (filePath) => {
+      const { errors } = await supabase.storage
+        .from("files")
+        .remove([filePath]);
+      if (errors) {
+        const err = new Error("Error deleting file from storage");
+        err.statusCode = 401;
+        return next(err);
+      }
+    });
+    await db.deleteFolder(parseInt(id), req.user.id);
     res.redirect("/home");
   } catch (error) {
     error.statusCode = error.statusCode || 500;

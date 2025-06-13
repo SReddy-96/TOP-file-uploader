@@ -84,7 +84,7 @@ const getFileById = async (id, userId) => {
   const result = await prisma.files.findFirst({
     where: {
       id: id,
-      userId: userId
+      userId: userId,
     },
     include: {
       folder: true,
@@ -97,7 +97,7 @@ const getFolderById = async (id, userId) => {
   const result = await prisma.folders.findFirst({
     where: {
       id: id,
-      userId: userId
+      userId: userId,
     },
     include: {
       children: true,
@@ -147,6 +147,33 @@ const deleteFolder = async (id, userId) => {
   return result;
 };
 
+// recursive go over the folders to add the id of them all to an array
+const getAllDescendantFolderIds = async (folderId) => {
+  const children = await prisma.folders.findMany({
+    where: { parentId: folderId },
+  });
+  let ids = children.map((child) => child.id);
+  for (const child of children) {
+    ids = ids.concat(await getAllDescendantFolderIds(child.id));
+  }
+  return ids;
+};
+
+const getAllFilePathsInFolderTree = async (rootFolderId) => {
+  // get all folders
+  const descendantFolderIds = await getAllDescendantFolderIds(rootFolderId);
+  const allFolderIds = [rootFolderId, ...descendantFolderIds];
+
+  // find all files with the folderId from the above array
+  const files = await prisma.files.findMany({
+    where: { folderId: { in: allFolderIds } },
+    select: { path: true },
+  });
+
+  // return the paths of all files for deleting
+  return files.map((file) => file.path);
+};
+
 module.exports = {
   getUserByUsername,
   getUserByEmail,
@@ -162,4 +189,6 @@ module.exports = {
   updateFolder,
   deleteFile,
   deleteFolder,
+  getAllDescendantFolderIds,
+  getAllFilePathsInFolderTree,
 };
