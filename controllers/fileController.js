@@ -64,7 +64,12 @@ const readFile = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
-    const file = await db.getFileById(parseInt(id));
+    const file = await db.getFileById(parseInt(id), req.user.id);
+    if (!file) {
+      const err = new Error("File not found");
+      err.statusCode = 404;
+      return next(err);
+    }
     res.render("file", { title: file.name, file: file });
   } catch (error) {
     error.statusCode = error.statusCode || 500;
@@ -80,7 +85,12 @@ const getUpdateFile = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
-    const file = await db.getFileById(parseInt(id));
+    const file = await db.getFileById(parseInt(id), req.user.id);
+    if (!file) {
+      const err = new Error("File not found");
+      err.statusCode = 404;
+      return next(err);
+    }
     res.render("updateFile", { title: `Update: ${file.name}`, file: file });
   } catch (error) {
     error.statusCode = error.statusCode || 500;
@@ -130,7 +140,12 @@ const getDeleteFile = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
-    const file = await db.getFileById(parseInt(id));
+    const file = await db.getFileById(parseInt(id), req.user.id);
+    if (!file) {
+      const err = new Error("File not found");
+      err.statusCode = 404;
+      return next(err);
+    }
     res.render("delete", {
       title: `Delete ${file.name}`,
       fileOrFolder: "file",

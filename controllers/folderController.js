@@ -47,7 +47,12 @@ const readFolder = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
-    const folder = await db.getFolderById(parseInt(id));
+    const folder = await db.getFolderById(parseInt(id), req.user.id);
+    if (!folder) {
+      const err = new Error("Folder not found");
+      err.statusCode = 404;
+      return next(err);
+    }
     res.render("folder", { title: folder.name, folder: folder });
   } catch (error) {
     error.statusCode = error.statusCode || 500;
@@ -63,7 +68,12 @@ const getUpdateFolder = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
-    const folder = await db.getFolderById(parseInt(id));
+    const folder = await db.getFolderById(parseInt(id), req.user.id);
+    if (!folder) {
+      const err = new Error("Folder not found");
+      err.statusCode = 404;
+      return next(err);
+    }
     const allFolders = res.locals.folders;
 
     // just getting the available parent folders and not children
@@ -125,7 +135,12 @@ const getDeleteFolder = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
-    const folder = await db.getFolderById(parseInt(id));
+    const folder = await db.getFolderById(parseInt(id), req.user.id);
+    if (!folder) {
+      const err = new Error("Folder not found");
+      err.statusCode = 404;
+      return next(err);
+    }
     res.render("delete", {
       title: `Delete ${folder.name}`,
       fileOrFolder: "folder",

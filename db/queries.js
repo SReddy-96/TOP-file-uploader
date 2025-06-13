@@ -79,10 +79,11 @@ const addFolder = async (name, folderId, userId) => {
   return result;
 };
 
-const getFileById = async (id) => {
+const getFileById = async (id, userId) => {
   const result = await prisma.files.findFirst({
     where: {
       id: id,
+      userId: userId
     },
     include: {
       folder: true,
@@ -91,10 +92,11 @@ const getFileById = async (id) => {
   return result;
 };
 
-const getFolderById = async (id) => {
+const getFolderById = async (id, userId) => {
   const result = await prisma.folders.findFirst({
     where: {
       id: id,
+      userId: userId
     },
     include: {
       children: true,
