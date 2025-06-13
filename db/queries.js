@@ -56,13 +56,14 @@ const getAllFilesByUser = async (userId) => {
   return results;
 };
 
-const addFile = async (file, folderId, userId) => {
+const addFile = async (file, fileURL, folderId, userId, path) => {
   const result = await prisma.files.create({
     data: {
       name: file.originalname,
-      url: file.destination + file.filename, // This will be the Supabase url. middleware to upload?
+      url: fileURL,
       userId: userId,
       folderId: folderId ? folderId : null,
+      path: path,
     },
   });
   return result;

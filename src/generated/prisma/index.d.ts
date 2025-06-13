@@ -4604,6 +4604,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     url: string | null
+    path: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -4614,6 +4615,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     url: string | null
+    path: string | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -4624,6 +4626,7 @@ export namespace Prisma {
     id: number
     name: number
     url: number
+    path: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -4648,6 +4651,7 @@ export namespace Prisma {
     id?: true
     name?: true
     url?: true
+    path?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -4658,6 +4662,7 @@ export namespace Prisma {
     id?: true
     name?: true
     url?: true
+    path?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -4668,6 +4673,7 @@ export namespace Prisma {
     id?: true
     name?: true
     url?: true
+    path?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -4765,6 +4771,7 @@ export namespace Prisma {
     id: number
     name: string
     url: string
+    path: string
     createdAt: Date
     updatedAt: Date
     userId: number
@@ -4794,6 +4801,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     url?: boolean
+    path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -4806,6 +4814,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     url?: boolean
+    path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -4818,6 +4827,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     url?: boolean
+    path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -4830,13 +4840,14 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     url?: boolean
+    path?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
     folderId?: boolean
   }
 
-  export type FilesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "createdAt" | "updatedAt" | "userId" | "folderId", ExtArgs["result"]["files"]>
+  export type FilesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "path" | "createdAt" | "updatedAt" | "userId" | "folderId", ExtArgs["result"]["files"]>
   export type FilesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     folder?: boolean | Files$folderArgs<ExtArgs>
@@ -4860,6 +4871,7 @@ export namespace Prisma {
       id: number
       name: string
       url: string
+      path: string
       createdAt: Date
       updatedAt: Date
       userId: number
@@ -5292,6 +5304,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Files", 'Int'>
     readonly name: FieldRef<"Files", 'String'>
     readonly url: FieldRef<"Files", 'String'>
+    readonly path: FieldRef<"Files", 'String'>
     readonly createdAt: FieldRef<"Files", 'DateTime'>
     readonly updatedAt: FieldRef<"Files", 'DateTime'>
     readonly userId: FieldRef<"Files", 'Int'>
@@ -5782,6 +5795,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     url: 'url',
+    path: 'path',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId',
@@ -6088,6 +6102,7 @@ export namespace Prisma {
     id?: IntFilter<"Files"> | number
     name?: StringFilter<"Files"> | string
     url?: StringFilter<"Files"> | string
+    path?: StringFilter<"Files"> | string
     createdAt?: DateTimeFilter<"Files"> | Date | string
     updatedAt?: DateTimeFilter<"Files"> | Date | string
     userId?: IntFilter<"Files"> | number
@@ -6100,6 +6115,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     url?: SortOrder
+    path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -6115,6 +6131,7 @@ export namespace Prisma {
     NOT?: FilesWhereInput | FilesWhereInput[]
     name?: StringFilter<"Files"> | string
     url?: StringFilter<"Files"> | string
+    path?: StringFilter<"Files"> | string
     createdAt?: DateTimeFilter<"Files"> | Date | string
     updatedAt?: DateTimeFilter<"Files"> | Date | string
     userId?: IntFilter<"Files"> | number
@@ -6127,6 +6144,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     url?: SortOrder
+    path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -6145,6 +6163,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Files"> | number
     name?: StringWithAggregatesFilter<"Files"> | string
     url?: StringWithAggregatesFilter<"Files"> | string
+    path?: StringWithAggregatesFilter<"Files"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Files"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Files"> | Date | string
     userId?: IntWithAggregatesFilter<"Files"> | number
@@ -6344,6 +6363,7 @@ export namespace Prisma {
   export type FilesCreateInput = {
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutFilesInput
@@ -6354,6 +6374,7 @@ export namespace Prisma {
     id?: number
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -6363,6 +6384,7 @@ export namespace Prisma {
   export type FilesUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutFilesNestedInput
@@ -6373,6 +6395,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -6383,6 +6406,7 @@ export namespace Prisma {
     id?: number
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -6392,6 +6416,7 @@ export namespace Prisma {
   export type FilesUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6400,6 +6425,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -6672,6 +6698,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     url?: SortOrder
+    path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -6688,6 +6715,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     url?: SortOrder
+    path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -6698,6 +6726,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     url?: SortOrder
+    path?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -7147,6 +7176,7 @@ export namespace Prisma {
   export type FilesCreateWithoutUserInput = {
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     folder?: FoldersCreateNestedOneWithoutFilesInput
@@ -7156,6 +7186,7 @@ export namespace Prisma {
     id?: number
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     folderId?: number | null
@@ -7222,6 +7253,7 @@ export namespace Prisma {
     id?: IntFilter<"Files"> | number
     name?: StringFilter<"Files"> | string
     url?: StringFilter<"Files"> | string
+    path?: StringFilter<"Files"> | string
     createdAt?: DateTimeFilter<"Files"> | Date | string
     updatedAt?: DateTimeFilter<"Files"> | Date | string
     userId?: IntFilter<"Files"> | number
@@ -7257,6 +7289,7 @@ export namespace Prisma {
   export type FilesCreateWithoutFolderInput = {
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutFilesInput
@@ -7266,6 +7299,7 @@ export namespace Prisma {
     id?: number
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -7552,6 +7586,7 @@ export namespace Prisma {
     id?: number
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     folderId?: number | null
@@ -7587,6 +7622,7 @@ export namespace Prisma {
   export type FilesUpdateWithoutUserInput = {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     folder?: FoldersUpdateOneWithoutFilesNestedInput
@@ -7596,6 +7632,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     folderId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7605,6 +7642,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     folderId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7614,6 +7652,7 @@ export namespace Prisma {
     id?: number
     name: string
     url: string
+    path: string
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
@@ -7630,6 +7669,7 @@ export namespace Prisma {
   export type FilesUpdateWithoutFolderInput = {
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutFilesNestedInput
@@ -7639,6 +7679,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -7648,6 +7689,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     url?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number

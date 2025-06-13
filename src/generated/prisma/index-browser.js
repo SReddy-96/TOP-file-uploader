@@ -150,6 +150,7 @@ exports.Prisma.FilesScalarFieldEnum = {
   id: 'id',
   name: 'name',
   url: 'url',
+  path: 'path',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',

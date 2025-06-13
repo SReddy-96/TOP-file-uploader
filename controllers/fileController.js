@@ -1,15 +1,8 @@
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: (req, file, done) => {
-    done(null, "./uploads/");
-  },
-  filename: (req, file, done) => {
-    done(null, Date.now() + "-" + file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
+const supabase = require("../db/supabaseClient");
+const upload = multer({ storage: multer.memoryStorage() });
 
 const notEmptyErr = "must not be empty";
 
@@ -46,8 +39,37 @@ const postFile = [
         errors: errors.array(),
       });
     }
+    const file = req.file;
+    const fileName = `${Date.now()}_${file.originalname}`;
+
     try {
-      const newFile = await db.addFile(req.file, folder, req.user.id);
+      // uploading to supabase
+      const { data, error } = await supabase.storage
+        .from("files")
+        .upload(fileName, file.buffer, {
+          contentType: file.mimetype,
+          upsert: false,
+        });
+
+      if (error) {
+        const err = new Error("Error uploading file to storage");
+        err.statusCode = 401;
+        return next(err);
+      }
+
+      const { data: publicUrlData } = supabase.storage
+        .from("files")
+        .getPublicUrl(fileName);
+
+      const fileUrl = publicUrlData.publicUrl;
+
+      const newFile = await db.addFile(
+        req.file,
+        fileUrl,
+        folder,
+        req.user.id,
+        fileName,
+      );
     } catch (error) {
       error.statusCode = error.statusCode || 500;
       next(error);
@@ -151,6 +173,7 @@ const getDeleteFile = async (req, res, next) => {
       fileOrFolder: "file",
       name: file.name,
       id: file.id,
+      path: file.path,
     });
   } catch (error) {
     error.statusCode = error.statusCode || 500;
@@ -166,6 +189,25 @@ const postDeleteFile = async (req, res, next) => {
       err.statusCode = 401;
       return next(err);
     }
+
+    // path of file in supabase
+    const { path } = req.body;
+    if (!path) {
+      const err = new Error("No file Path");
+      err.statusCode = 401;
+      return next(err);
+    }
+
+    const { data, error } = await supabase.storage
+      .from("files")
+      .remove([path]);
+
+    if (error) {
+      const err = new Error("Error deleting file from storage");
+      err.statusCode = 401;
+      return next(err);
+    }
+
     const deletedFile = await db.deleteFile(parseInt(id), req.user.id);
     res.redirect("/home");
   } catch (error) {

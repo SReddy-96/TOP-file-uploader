@@ -2,7 +2,7 @@
 <main>
   <h2><%= file.name %></h2>
   <!-- turn url into download button -->
-  <p>url: <%= file.url %></p>
+  <a href="<%= file.url %>" download><button>Download</button></a>
   <% if (file.folder) { %>
   <p>
     Folder: <a href="/folder/<%= file.folder.id %>"><%= file.folder.name %></a>
