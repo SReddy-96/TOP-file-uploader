@@ -1,8 +1,10 @@
 <%- include('partials/header', {title:title}) %>
 <main>
   <h2><%= file.name %></h2>
-  <!-- turn url into download button -->
-  <a href="<%= file.url %>" download><button>Download</button></a>
+
+  <a href="<%= file.url %>" download target="_blank"
+    ><button>Download</button></a
+  >
   <% if (file.folder) { %>
   <p>
     Folder: <a href="/folder/<%= file.folder.id %>"><%= file.folder.name %></a>
@@ -10,7 +12,9 @@
   <% }else{ %>
   <p>Folder: None</p>
   <% } %>
+  <p>Size: <%= (file.size / (1024 * 1024)).toFixed(2) %> MB</p>
   <p>Created: <%= file.createdAt.toDateString() %></p>
+  <p>Updated: <%= file.updatedAt.toDateString() %></p>
   <div class="actionButtons">
     <a href="/file/update/<%= file.id %>">Update</a>
     <a href="/file/delete/<%= file.id %>">Delete</a>

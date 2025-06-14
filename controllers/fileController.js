@@ -2,17 +2,30 @@ const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 const multer = require("multer");
 const supabase = require("../db/supabaseClient");
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 2 * 1024 * 1024, // 2MB in bytes
+  },
+});
 
 const notEmptyErr = "must not be empty";
 
 const validateFile = [
-  body("file").custom((value, { req }) => {
-    if (!req.file) {
-      throw new Error("File is required.");
-    }
-    return true;
-  }),
+  body("file")
+    .custom((value, { req }) => {
+      if (!req.file) {
+        throw new Error("File is required.");
+      }
+      return true;
+    })
+    .custom((value, { req }) => {
+      if (req.file.size > 2 * 1024 * 1024) {
+        // 2MB in bytes
+        throw new Error("File size must not exceed 2MB.");
+      }
+      return true;
+    }),
 ];
 
 const validateUpdateFile = [
@@ -198,9 +211,7 @@ const postDeleteFile = async (req, res, next) => {
       return next(err);
     }
 
-    const { data, error } = await supabase.storage
-      .from("files")
-      .remove([path]);
+    const { data, error } = await supabase.storage.from("files").remove([path]);
 
     if (error) {
       const err = new Error("Error deleting file from storage");

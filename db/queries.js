@@ -75,6 +75,7 @@ const addFile = async (file, fileURL, folderId, userId, path) => {
       userId: userId,
       folderId: folderId ? folderId : null,
       path: path,
+      size: file.size,
     },
   });
   return result;
