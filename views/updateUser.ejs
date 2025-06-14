@@ -1,0 +1,25 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <div class="form-error"><%- include('partials/form-error') %></div>
+
+  <form action="/profile/edit/<%= user.id %>" method="post">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      value="<%= user.username %>"
+      required
+    />
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      value="<%= user.email %>"
+      required
+    />
+    <button type="submit">Update</button>
+  </form>
+</main>
+<%- include('partials/footer') %>

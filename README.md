@@ -1,4 +1,4 @@
-# File Uploader - 
+# File Uploader -
 
 ## Summary
 
@@ -20,7 +20,7 @@
 - **Authentication:** Passport.js
 - **Validation:** express-validator
 - **Utilities:** serve-favicon, dotenv
-- **Deployment:**  
+- **Deployment:**
 
 ## Installation & Setup
 
@@ -88,10 +88,9 @@
 ### schemas
 
 - sessions
-- files (ONE-TO-MANY  with user) user, file_url, id
+- files (ONE-TO-MANY with user) user, file_url, id
 - folders (one-to-many with user) (one-to-many with files) user, id
-- users (id, name, email, username, password, folders[], files[])
-      - If user deleted then delete all files and folders.
+- users (id, name, email, username, password, folders[], files[]) - If user deleted then delete all files and folders.
 
 ### Layout
 
@@ -105,9 +104,12 @@ Title of the page shows which folder your in.
 side panel and footer.
 Able to add new folders and open the folders and then add folders or files to these folders.
 
-- register (CRUD)
-      - Should have a view profile where they can change user data and delete themselves.
+- register (CRUD) - Should have a view profile where they can change user data and delete themselves.
 - log in (probably the '/' route) (get, post)
 - home (get)
 - file (CRUD) Should be able to download the file.
 - folder (CRUD)
+
+need to add update to users and be able to delete on a profile page.
+
+put a max about of bytes for the file uploaded, can do both supabase and on schema.

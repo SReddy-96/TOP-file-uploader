@@ -38,6 +38,17 @@ const insertUser = async (email, username, hashedPassword) => {
   return result;
 };
 
+const updateUser = async (id, username, email) => {
+  const result = await prisma.users.update({
+    where: { id: id },
+    data: {
+      username: username,
+      email: email,
+    },
+  });
+  return result;
+};
+
 const getAllFoldersByUser = async (userId) => {
   const result = await prisma.folders.findMany({
     where: {
@@ -174,11 +185,31 @@ const getAllFilePathsInFolderTree = async (rootFolderId) => {
   return files.map((file) => file.path);
 };
 
+const getAllFilePathsInUser = async (id) => {
+  const files = await prisma.files.findMany({
+    where: { userId: id },
+    select: { path: true },
+  });
+
+  // return the paths of all files for deleting
+  return files.map((file) => file.path);
+};
+
+const deleteUser = async (id) => {
+  const files = await getAllFilePathsInUser(id);
+  const result = await prisma.users.delete({
+    where: { id: id },
+  });
+
+  return files;
+};
+
 module.exports = {
   getUserByUsername,
   getUserByEmail,
   getUserById,
   insertUser,
+  updateUser,
   getAllFoldersByUser,
   getAllFilesByUser,
   addFile,
@@ -191,4 +222,5 @@ module.exports = {
   deleteFolder,
   getAllDescendantFolderIds,
   getAllFilePathsInFolderTree,
+  deleteUser,
 };

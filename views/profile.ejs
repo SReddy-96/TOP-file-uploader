@@ -1,0 +1,17 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <h2>
+    Welcome
+    <%= user.username %>
+  </h2>
+  <p>Your email: <%= user.email %></p>
+  <p>Your profile was created on: <%= user.created.toDateString() %></p>
+  <p>Your profile was last updated on: <%= user.updated.toDateString() %></p>
+  <div class="actionButtons">
+    <a href="/profile/edit/<%= user.id %>" class="btn-primary">Edit Profile</a>
+    <a href="/profile/delete/<%= user.id %>" class="btn-danger"
+      >Delete Profile</a
+    >
+  </div>
+</main>
+<%- include('partials/footer') %>

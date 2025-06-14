@@ -14,6 +14,7 @@ const registerRouter = require("./routes/registerRouter");
 const indexRouter = require("./routes/indexRouter");
 const fileRouter = require("./routes/fileRouter");
 const folderRouter = require("./routes/folderRouter");
+const profileRouter = require("./routes/userRouter");
 
 const app = express();
 
@@ -69,6 +70,7 @@ app.use(authenticateUser);
 app.use("/home", indexRouter);
 app.use("/file", fileRouter);
 app.use("/folder", folderRouter);
+app.use('/profile', profileRouter)
 
 // logout route
 app.get("/log-out", (req, res, next) => {

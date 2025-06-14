@@ -170,7 +170,7 @@ const getDeleteFile = async (req, res, next) => {
     }
     res.render("delete", {
       title: `Delete ${file.name}`,
-      fileOrFolder: "file",
+      type: "file",
       name: file.name,
       id: file.id,
       path: file.path,

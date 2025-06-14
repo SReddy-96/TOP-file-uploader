@@ -4,12 +4,12 @@
     Are you sure you want to delete
     <%= name %>?
   </h2>
-  <% if (fileOrFolder === "folder") { %>
+  <% if (type === "folder") { %>
   <p>All files and folders inside <%= name %> will be permanently deleted?</p>
   <% } %>
   <a href="/home">Cancel</a>
-  <form action="/<%= fileOrFolder %>/delete/<%= id %>" method="post">
-    <% if (fileOrFolder==='file') { %>
+  <form action="/<%= type %>/delete/<%= id %>" method="post">
+    <% if (type === 'file') { %>
     <input type="hidden" name="path" value="<%= path %>" />
     <% } %>
     <button type="submit">Delete</button>

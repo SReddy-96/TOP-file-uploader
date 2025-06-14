@@ -144,7 +144,7 @@ const getDeleteFolder = async (req, res, next) => {
     }
     res.render("delete", {
       title: `Delete ${folder.name}`,
-      fileOrFolder: "folder",
+      type: "folder",
       name: folder.name,
       id: folder.id,
     });
