@@ -14,6 +14,9 @@ const validateUpdateProfile = [
     .custom(async (value, { req }) => {
       const currentUser = req.user;
       const user = await db.getUserByEmail(value);
+      if (!user) {
+        return true; // Allow the email to remain unchanged if it doesn't exist
+      }
       if (user.id === currentUser.id) {
         return true; // Allow the current user's email to remain unchanged
       }
@@ -35,6 +38,9 @@ const validateUpdateProfile = [
     .custom(async (value, { req }) => {
       const currentUser = req.user;
       const user = await db.getUserByUsername(value);
+      if (!user) {
+        return true; // Allow the email to remain unchanged if it doesn't exist
+      }
       if (user.id === currentUser.id) {
         return true; // Allow the current user's email to remain unchanged
       }
