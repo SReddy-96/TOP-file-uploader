@@ -16,7 +16,7 @@ body {
   font-family:
     system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  height: 100%;
+  display: flex;
 }
 
 img,
@@ -50,3 +50,79 @@ h6 {
   isolation: isolate;
 }
 /* -------- */
+
+header {
+  height: 100vh;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  background: black;
+  padding: 1rem;
+}
+
+nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-icon {
+  margin-right: 1rem;
+}
+
+nav > ul > li > a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+#folder-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+#folder-list > a {
+  color: black;
+  text-decoration: none;
+}
+
+.folder-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#file-list {
+  display: flex;
+  flex-direction: column;
+}
+
+#file-list > a {
+  color: black;
+  text-decoration: none;
+  border-bottom: 1px solid #ccc;
+}
+
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.file-card:hover {
+  background-color: #f0f0f0;
+}
