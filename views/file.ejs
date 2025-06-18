@@ -3,26 +3,26 @@
   <%- include('partials/aside') %>
 
   <section>
-    <h2><%= file.name %></h2>
+    <h2  class="section-title"><%= file.name %></h2>
+    <hr>
     <a href="<%= file.url %>" download target="_blank"
-      ><button>Download</button></a
+      ><button type="button" class="button-secondary">Download</button></a
     >
     <% if (file.folder) { %>
     <p>
-      Folder:
+      <b>Folder:</b>
       <a href="/folder/<%= file.folder.id %>"><%= file.folder.name %></a>
     </p>
     <% }else{ %>
-    <p>Folder: None</p>
+    <p><b>Folder:</b> None</p>
     <% } %>
-    <p>Size: <%= (file.size / (1024 * 1024)).toFixed(2) %> MB</p>
-    <p>Created: <%= file.createdAt.toDateString() %></p>
-    <p>Updated: <%= file.updatedAt.toDateString() %></p>
+    <p><b>Size:</b> <%= (file.size / (1024 * 1024)).toFixed(2) %> MB</p>
+    <p><b>Created:</b> <%= file.createdAt.toDateString() %></p>
+    <p><b>Updated:</b> <%= file.updatedAt.toDateString() %></p>
     <div class="actionButtons">
-      <a href="/file/update/<%= file.id %>">Update</a>
-      <a href="/file/delete/<%= file.id %>">Delete</a>
+      <a href="/file/update/<%= file.id %>" class="button-primary">Update</a>
+      <a href="/file/delete/<%= file.id %>" class="button-danger">Delete</a>
     </div>
-    <a href="/home">Back</a>
   </section>
 </main>
 <%- include('partials/footer') %>

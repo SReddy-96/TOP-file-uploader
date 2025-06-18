@@ -2,18 +2,28 @@
 <main>
   <%- include('partials/aside') %>
   <section>
-    <h2>
+    <h2  class="section-title">
       Welcome
       <%= user.username %>
     </h2>
-    <p>Your email: <%= user.email %></p>
-    <p>Your profile was created on: <%= user.created.toDateString() %></p>
-    <p>Your profile was last updated on: <%= user.updated.toDateString() %></p>
+    <hr>
+    <p>
+      <b>Your email:</b>
+      <%= user.email %>
+    </p>
+    <p>
+      <b>Your profile was created on:</b>
+      <%= user.created.toDateString() %>
+    </p>
+    <p>
+      <b>Your profile was last updated on:</b>
+      <%= user.updated.toDateString() %>
+    </p>
     <div class="actionButtons">
-      <a href="/profile/edit/<%= user.id %>" class="btn-primary"
+      <a href="/profile/edit/<%= user.id %>" class="button-primary"
         >Edit Profile</a
       >
-      <a href="/profile/delete/<%= user.id %>" class="btn-danger"
+      <a href="/profile/delete/<%= user.id %>" class="button-danger"
         >Delete Profile</a
       >
     </div>

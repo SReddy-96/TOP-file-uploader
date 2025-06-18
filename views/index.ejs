@@ -4,9 +4,10 @@
   <%- include('partials/aside') %>
 
   <section>
-    <h2>Home page</h2>
+    <h2  class="section-title">Home page</h2>
+    <hr>
     <h3>Folders:</h3>
-    <div id="folder-list">
+    <div class="folder-list">
       <% if (locals.folders.length===0) { %>
       <p>No Folders</p>
       <% } %>
@@ -17,7 +18,7 @@
       <% }) %>
     </div>
     <h3>All Files:</h3>
-    <div id="file-list">
+    <div class="file-list">
       <% if (files.length===0) { %>
       <p>No Files</p>
       <% } %>

@@ -18,6 +18,7 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 img,
@@ -53,26 +54,30 @@ h6 {
 /* -------- */
 
 header {
-  min-height: 12vh;
+  flex: 0 0 auto;
   width: 100%;
   padding: 1rem;
+  display: flex;
+  align-items: center;
   border-bottom: 1px solid #ccc;
   background-color: #f8f8f8;
 }
 
 main {
+  flex: 1 1 auto;
   display: flex;
+  min-height: 0;
 }
 
 section {
-  flex: 1;
-  padding: 1rem;
+  flex: 1 1 auto;
+  padding: 2rem;
   overflow-y: auto;
-  min-height: 88vh;
+  min-height: 0;
 }
 
 footer {
-  height: fit-content;
+  height: 5vh;
   width: 100%;
   padding: 1.5rem;
   border-top: 1px solid #ccc;
@@ -83,7 +88,8 @@ footer {
 }
 
 aside {
-  min-height: 88vh;
+  flex-shrink: 0;
+  height: 100%;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -111,14 +117,14 @@ nav > ul > li > a {
   font-weight: 500;
 }
 
-#folder-list {
+.folder-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
   padding: 1rem;
 }
 
-#folder-list > a {
+.folder-list > a {
   color: black;
   text-decoration: none;
 }
@@ -132,12 +138,12 @@ nav > ul > li > a {
   border-radius: 8px;
 }
 
-#file-list {
+.file-list {
   display: flex;
   flex-direction: column;
 }
 
-#file-list > a {
+.file-list > a {
   color: black;
   text-decoration: none;
   border-bottom: 1px solid #ccc;
@@ -152,4 +158,182 @@ nav > ul > li > a {
 
 .file-card:hover {
   background-color: #f0f0f0;
+}
+
+.button-danger {
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 1rem 0;
+}
+
+.button-danger:focus {
+  color: #171e29;
+}
+
+.button-danger:hover,
+.button-danger:active {
+  border-color: rgb(255, 0, 0);
+  color: rgb(255, 0, 0);
+  fill: rgb(255, 0, 0);
+}
+.button-secondary {
+  margin: 1rem 0;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-secondary:focus {
+  color: #171e29;
+}
+
+.button-secondary:hover,
+.button-secondary:active {
+  border-color: #31572c;
+  color: #31572c;
+  fill: #31572c;
+}
+.actionButtons {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.button-primary {
+  margin: 1rem 0;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-primary:focus {
+  color: #171e29;
+}
+
+.button-primary:hover,
+.button-primary:active {
+  border-color: #06f;
+  color: #06f;
+  fill: #06f;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+section > p {
+  margin: 0.5rem;
+}
+
+hr {
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .button-primary,
+  .button-danger,
+  .button-secondary {
+    min-width: 100px;
+  }
+
+  .button-primary {
+    border-color: #06f;
+    color: #06f;
+    fill: #06f;
+  }
+  .button-danger {
+    border-color: rgb(255, 0, 0);
+    color: rgb(255, 0, 0);
+    fill: rgb(255, 0, 0);
+  }
+
+  .button-secondary {
+    border-color: #31572c;
+    color: #31572c;
+    fill: #31572c;
+  }
+
+  .aside-title {
+    display: none;
+  }
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+  }
+  nav {
+    height: 100%;
+  }
+  nav > ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  section {
+    padding: 1rem;
+  }
 }

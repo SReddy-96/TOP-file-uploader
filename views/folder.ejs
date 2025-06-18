@@ -2,41 +2,54 @@
 <main>
   <%- include('partials/aside') %>
   <section>
-    <h2><%= folder.name %></h2>
+    <h2  class="section-title"><%= folder.name %></h2>
+    <hr>
     <% if (!folder.parent) { %>
-    <p>Parent: No Parent</p>
+    <p><b>Parent:</b> No Parent</p>
     <% } else { %>
     <p>
-      Parent:
+      <b>Parent:</b>
       <a href="/folder/<%= folder.parent.id %>"><%= folder.parent.name %> </a>
     </p>
     <% } %>
-    <p>Created: <%= folder.createdAt.toDateString() %></p>
+    <p>
+      <b>Created:</b>
+      <%= folder.createdAt.toDateString() %>
+    </p>
+    <p>
+      <b>Updated:</b>
+      <%= folder.updatedAt.toDateString() %>
+    </p>
+    <div class="actionButtons">
+      <a href="/folder/update/<%= folder.id %>" class="button-primary"
+        >Update</a
+      >
+      <a href="/folder/delete/<%= folder.id %>" class="button-danger">Delete</a>
+    </div>
     <h3>Children Folders:</h3>
-    <ul>
+    <div class="folder-list">
       <% if (folder.children.length===0) { %>
-      <li>No Children Folders</li>
+      <p>No Children Folders</p>
       <% } else { %>
       <% folder.children.forEach(child => { %>
-      <li><a href="/folder/<%= child.id %>"><%= child.name %></a></li>
+      <a href="/folder/<%= child.id %>">
+        <%- include('partials/folderCard', {folder: child}) %>
+      </a>
       <% }) %>
       <% } %>
-    </ul>
+    </div>
     <h3>Files:</h3>
-    <ul>
+    <div class="file-list">
       <% if (folder.files.length===0) { %>
-      <li>No Files</li>
+      <p><b>No Files</b></p>
       <% } else { %>
       <% folder.files.forEach(file => { %>
-      <li><a href="/file/<%= file.id %>"><%= file.name %></a></li>
+      <a href="/file/<%= file.id %>">
+        <%- include('partials/fileCard', {file: file}) %>
+      </a>
       <% }) %>
       <% } %>
-    </ul>
-    <div class="actionButtons">
-      <a href="/folder/update/<%= folder.id %>">Update</a>
-      <a href="/folder/delete/<%= folder.id %>">Delete</a>
     </div>
-    <a href="/home">Back</a>
   </section>
 </main>
 <%- include('partials/footer') %>
