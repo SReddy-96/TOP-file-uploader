@@ -17,6 +17,7 @@ body {
     system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   display: flex;
+  flex-direction: column;
 }
 
 img,
@@ -52,12 +53,43 @@ h6 {
 /* -------- */
 
 header {
-  height: 100vh;
+  min-height: 12vh;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+main {
+  display: flex;
+}
+
+section {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  min-height: 88vh;
+}
+
+footer {
+  height: fit-content;
+  width: 100%;
+  padding: 1.5rem;
+  border-top: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+}
+
+aside {
+  min-height: 88vh;
   width: fit-content;
   display: flex;
   flex-direction: column;
   background: black;
   padding: 1rem;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 nav > ul {
@@ -77,11 +109,6 @@ nav > ul > li > a {
   color: white;
   text-decoration: none;
   font-weight: 500;
-}
-
-main {
-  flex: 1;
-  padding: 1rem;
 }
 
 #folder-list {

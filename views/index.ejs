@@ -1,9 +1,10 @@
 <%- include('partials/header', {title:title}) %>
 
 <main>
-  <h2>Home page</h2>
+  <%- include('partials/aside') %>
 
   <section>
+    <h2>Home page</h2>
     <h3>Folders:</h3>
     <div id="folder-list">
       <% if (locals.folders.length===0) { %>
@@ -28,5 +29,4 @@
     </div>
   </section>
 </main>
-
 <%- include('partials/footer') %>

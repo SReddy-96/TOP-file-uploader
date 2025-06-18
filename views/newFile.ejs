@@ -1,19 +1,21 @@
 <%- include('partials/header', {title:title}) %>
 <main>
-  <div class="form-error"><%- include('partials/form-error') %></div>
-
-  <form action="/file/add" method="post" enctype="multipart/form-data">
-    <label for="file">File</label>
-    <input type="file" id="file" name="file" required />
-    <p><i>File must be under 2MB</i></p>
-    <label for="folder">Folder</label>
-    <select name="folder" id="folder">
-      <option value="">None</option>
-      <% locals.folders.forEach(folder => { %>
-      <option value="<%= folder.id %>"><%= folder.name %></option>
-      <% }) %>
-    </select>
-    <button type="submit">Add File</button>
-  </form>
+  <%- include('partials/aside') %>
+  <section>
+    <div class="form-error"><%- include('partials/form-error') %></div>
+    <form action="/file/add" method="post" enctype="multipart/form-data">
+      <label for="file">File</label>
+      <input type="file" id="file" name="file" required />
+      <p><i>File must be under 2MB</i></p>
+      <label for="folder">Folder</label>
+      <select name="folder" id="folder">
+        <option value="">None</option>
+        <% locals.folders.forEach(folder => { %>
+        <option value="<%= folder.id %>"><%= folder.name %></option>
+        <% }) %>
+      </select>
+      <button type="submit">Add File</button>
+    </form>
+  </section>
 </main>
 <%- include('partials/footer') %>

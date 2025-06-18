@@ -113,3 +113,5 @@ Able to add new folders and open the folders and then add folders or files to th
 need to add update to users and be able to delete on a profile page.
 
 put a max about of bytes for the file uploaded, can do both supabase and on schema.
+
+need to refactor the partials setup, header needs to be just name of app, then use aside for side bar, and footer is just at the bottom of main. aside should be in each page but not login and register.
