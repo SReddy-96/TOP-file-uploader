@@ -2,8 +2,15 @@
 <main>
   <%- include('partials/aside') %>
   <section>
+    <h2 class="section-title">Add a New File</h2>
+    <hr />
     <div class="form-error"><%- include('partials/form-error') %></div>
-    <form action="/file/add" method="post" enctype="multipart/form-data">
+    <form
+      action="/file/add"
+      method="post"
+      enctype="multipart/form-data"
+      id="AddFileForm"
+    >
       <label for="file">File</label>
       <input type="file" id="file" name="file" required />
       <p><i>File must be under 2MB</i></p>
@@ -14,7 +21,7 @@
         <option value="<%= folder.id %>"><%= folder.name %></option>
         <% }) %>
       </select>
-      <button type="submit">Add File</button>
+      <button type="submit" class="button-primary">Add File</button>
     </form>
   </section>
 </main>

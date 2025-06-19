@@ -2,6 +2,8 @@
 <main>
   <%- include('partials/aside') %>
   <section>
+    <h2 class="section-title">Update User</h2>
+    <hr>
     <div class="form-error"><%- include('partials/form-error') %></div>
     <form action="/profile/edit/<%= user.id %>" method="post">
       <label for="username">Username</label>
@@ -20,7 +22,7 @@
         value="<%= user.email %>"
         required
       />
-      <button type="submit">Update</button>
+      <button type="submit" class="button-primary">Update</button>
     </form>
   </section>
 </main>

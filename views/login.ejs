@@ -1,17 +1,34 @@
 <%- include('partials/header', {title:title}) %>
 <main>
-  <section>
-    <h2>Login</h2>
-    <div class="form-error"><%- include('partials/form-error') %></div>
-    <form class="forms" action="/" method="POST">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" required />
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required />
-      <button class="button-primary" type="submit">Login</button>
-    </form>
-    <p>Not Registered yet?</p>
-    <a href="/register">Register Here</a>
+  <section class="nonUserContainer">
+    <div class="nonUserWrapper">
+      <h2>Login</h2>
+      <hr />
+      <div class="form-error"><%- include('partials/form-error') %></div>
+      <form class="forms" action="/" method="POST" class="nonUserForms">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          required
+          placeholder="e.g. john_doe"
+          autocomplete="username"
+        />
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          placeholder="e.g. Password123#"
+          autocomplete="current-password"
+        />
+        <button class="button-primary" type="submit">Login</button>
+      </form>
+      <p>Not Registered yet?</p>
+      <a href="/register">Register Here</a>
+    </div>
   </section>
 </main>
 <%- include('partials/footer') %>

@@ -2,6 +2,8 @@
 <main>
   <%- include('partials/aside') %>
   <section>
+    <h2 class="section-title">Add a New Folder</h2>
+    <hr>
     <div class="form-error"><%- include('partials/form-error') %></div>
     <form action="/folder/add" method="post">
       <label for="name">Name</label>
@@ -13,7 +15,7 @@
         <option value="<%= folder.id %>"><%= folder.name %></option>
         <% }) %>
       </select>
-      <button type="submit">Add Folder</button>
+      <button type="submit" class="button-primary">Add Folder</button>
     </form>
   </section>
 </main>

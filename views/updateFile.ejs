@@ -2,6 +2,8 @@
 <main>
     <%- include('partials/aside') %>
   <section>
+    <h2 class="section-title">Update File</h2>
+    <hr>
     <div class="form-error"><%- include('partials/form-error') %></div>
     <form action="/file/update/<%= file.id %>" method="post" enctype="multipart/form-data">
       <label for="name">Name</label>
@@ -17,7 +19,7 @@
       </option>
     <% }) %>
       </select>
-      <button type="submit">Update File</button>
+      <button type="submit" class="button-primary">Update File</button>
     </form>
   </section>
 </main>
