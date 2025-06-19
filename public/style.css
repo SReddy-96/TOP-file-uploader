@@ -130,8 +130,8 @@ nav > ul > li > a {
   font-weight: 500;
 }
 nav > ul > li > a:hover {
-  stroke: #06f;
-  color: #06f;
+  stroke: #6fa9ff;
+  color: #6fa9ff;
 }
 
 .folder-list {
