@@ -1,16 +1,39 @@
-# File Uploader -
+# The Odin Project - File Uploader
 
 ## Summary
 
+A file uploader app where users can create, read, update, and delete folders, as well as upload and download files.
+
 ## Preview
 
-![Walkthrough of app]()
+Click for walkthrough video:
+
+[![Walkthrough of app](https://img.youtube.com/vi/5M5rVtD0LMs/default.jpg)](https://youtu.be/5M5rVtD0LMs)
 
 ## Features
 
+- Users can create an account and log in, with sessions stored securely.
+- Add folders to organize your account.
+- Edit folder names and change folder locations.
+- Upload files, which are stored in Supabase.
+- Deleting folders and files cascades through the database and Supabase.
+- All forms are validated and sanitized; files must be under 2MB.
+
 ## Technical Challenges Overcome
 
+- Setting up the Prisma schema and running migrations correctly.
+- Configuring Supabase and handling file uploads/deletions in the bucket.
+- Separating code into partials for maintainability.
+- Using Multer to process file uploads.
+- Ensuring files are deleted from Supabase when a folder is deleted, with proper cascading.
+
 ## Key Learnings
+
+- Working with Supabase procedures.
+- Designing and managing a Prisma schema.
+- Structuring files and folders for scalable architecture.
+- Using recursion to retrieve folder children.
+- Deploying with Prisma.
 
 ## Technologies Used
 
@@ -20,7 +43,7 @@
 - **Authentication:** Passport.js
 - **Validation:** express-validator
 - **Utilities:** serve-favicon, dotenv
-- **Deployment:**
+- **Deployment:** Railway
 
 ## Installation & Setup
 
@@ -30,7 +53,7 @@
    git clone https://github.com/SReddy-96/TOP-file-uploader.git
    ```
 
-2. **Navigate to project directory:**
+2. **Navigate to the project directory:**
 
    ```bash
    cd TOP-file-uploader
@@ -44,74 +67,34 @@
 
 4. **Configure environment variables:**
 
-   - Create a `.env` file in the root directory
+   - Create a `.env` file in the root directory.
    - Required variables:
 
-     ```.env
+     ```env
      DATABASE_URL=your_postgresql_connection_string
-     SESSION_SECRET=your_session_secret
+     SUPABASE_URL=your_supabase_url
+     SUPABASE_SERVICE_ROLE_KEY=your_role_key
      PORT=3000
      ```
 
-5. **Start the development server:**
+5. **Generate the Prisma client:**
+
+   ```bash
+   npx prisma generate
+   ```
+
+6. **Run database migrations:**
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+7. **Start the development server:**
 
    ```bash
    npm run dev
    ```
 
-6. **Access the application:**
-   Open your browser and navigate to `http://localhost:3000`
+8. **Access the application:**
 
-## Application Structure
-
-## About
-
-## Notes
-
-### install
-
-- @prisma/client
-- @quixo3/prisma-session-store
-- bcryptjs
-- dotenv"
-- ejs
-- express
-- express-session
-- express-validator
-- multer
-- passport
-- passport-local
-- pg
-- prisma
-- serve-favicon
-
-### schemas
-
-- sessions
-- files (ONE-TO-MANY with user) user, file_url, id
-- folders (one-to-many with user) (one-to-many with files) user, id
-- users (id, name, email, username, password, folders[], files[]) - If user deleted then delete all files and folders.
-
-### Layout
-
-User should be able to login or sign up from the initial load.
-Shouldn't need a landing page Used more like an app.
-login and sign up have no header and footer. Just fill the entire page.
-Similar to google drive but using a side panel style.
-Some sort of index page with all the files and folders.
-Side panel has add folder and add file and home page and maybe a settings / profile page
-Title of the page shows which folder your in.
-side panel and footer.
-Able to add new folders and open the folders and then add folders or files to these folders.
-
-- register (CRUD) - Should have a view profile where they can change user data and delete themselves.
-- log in (probably the '/' route) (get, post)
-- home (get)
-- file (CRUD) Should be able to download the file.
-- folder (CRUD)
-
-need to add update to users and be able to delete on a profile page.
-
-put a max about of bytes for the file uploaded, can do both supabase and on schema.
-
-need to refactor the partials setup, header needs to be just name of app, then use aside for side bar, and footer is just at the bottom of main. aside should be in each page but not login and register.
+   Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
